@@ -1,0 +1,9 @@
+<form [formGroup]="form">
+  <h2>{{ airport ? 'Update' : 'Create' }} airport</h2>
+  <div class="form-group row">
+    <div class="col-sm-9">
+      <input class="form-control" maxlength="100" type="text" formControlName="name" placeholder="Airport name" />
+    </div>
+    <button type="button" class="btn btn-primary col-sm-3" (click)="onSaveClick()">{{ airport ? 'Edit' : 'Save' }}</button>
+  </div>
+</form>

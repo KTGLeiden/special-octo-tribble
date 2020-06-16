@@ -1,0 +1,23 @@
+<h1>Airports</h1>
+<button class="btn btn-primary" [routerLink]="['add']">+ Add airport</button>
+<table *ngIf="(airports$ | async)?.length > 0" class="table">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let airport of airports$ | async">
+      <td>{{ airport.id }}</td>
+      <td>{{ airport.name }}</td>
+      <td>
+        <button (click)="onDeleteClick(airport)" class="btn btn-danger">Delete</button>
+        <button class="btn btn-warning" [routerLink]="[airport.id, 'edit']">Update</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p *ngIf="!(airports$ | async)?.length">No airports yet..</p>

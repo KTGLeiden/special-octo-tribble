@@ -1,0 +1,20 @@
+<form [formGroup]="form">
+  <h2>{{ plane ? 'Update' : 'Create' }} airplane</h2>
+  <div class="alert alert-warning" role="alert" *ngIf="!airports?.length">
+    First, add an airport!
+  </div>
+  <div>
+    <div class="form-group row" *ngIf="airports?.length > 0">
+      <div class="col-sm-5">
+        <input class="form-control" maxlength="100" type="text" formControlName="name" placeholder="Airplane name" />
+      </div>
+      <div class="col-sm-4">
+        <select class="form-control" formControlName="airport" [compareWith]="compareFn">
+          <option value="">Select an Airport</option>
+          <option *ngFor="let airport of airports" [ngValue]="airport">{{ airport.name }}</option>
+        </select>
+      </div>
+      <button type="button" class="btn btn-primary col-sm-2" (click)="onSaveClick()">{{ plane ? 'Edit' : 'Save' }}</button>
+    </div>
+  </div>
+</form>

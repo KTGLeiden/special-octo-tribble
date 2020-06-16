@@ -1,0 +1,19 @@
+<h1>Fly with planes</h1>
+<form [formGroup]="form">
+  <div class="form-group">
+    <label for="airplaneSelect"><strong>Airplane:</strong></label>
+    <select class="form-control" formControlName="airplane">
+      <option value="">Select an airplane</option>
+      <option *ngFor="let plane of planes" [ngValue]="plane">{{ plane.name }} - {{ plane.airport.name }}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="destinationSelect"><strong>Destination:</strong></label>
+    <select class="form-control" formControlName="destination">
+      <option value="">Select an airport</option>
+      <option *ngFor="let airport of airports" [ngValue]="airport">{{ airport.name }}</option>
+    </select>
+  </div>
+  <button class="btn btn-primary" type="button" (click)="flyPlane()">Fly!</button>
+</form>
