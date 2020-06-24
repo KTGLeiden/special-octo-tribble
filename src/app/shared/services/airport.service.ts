@@ -1,15 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment';
 import { Airport } from '../models/airport.model';
+import { AppConfigService } from './app-config.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AirportService {
-  private readonly apiUrl = `${environment.apiUrl}/airports`;
-  constructor(private readonly http: HttpClient) {}
+  private readonly apiUrl;
+  constructor(private readonly http: HttpClient, readonly appConfigService: AppConfigService) {
+    this.apiUrl = `${appConfigService.apiUrl}/airports`;
+  }
 
   /** Gets all airports */
   public getAirports(): Observable<Airport[]> {

@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment';
 import { Airport } from '../models/airport.model';
 import { Plane } from '../models/plane.model';
+import { AppConfigService } from './app-config.service';
 
 /**
  * CRUD service for planes
@@ -12,8 +12,10 @@ import { Plane } from '../models/plane.model';
   providedIn: 'root',
 })
 export class PlaneService {
-  private readonly apiUrl = `${environment.apiUrl}/airplanes`;
-  constructor(private readonly http: HttpClient) {}
+  private readonly apiUrl;
+  constructor(private readonly http: HttpClient, readonly appConfigService: AppConfigService) {
+    this.apiUrl = `${appConfigService.apiUrl}/airplanes`;
+  }
 
   /** Gets all planes */
   public getPlanes(): Observable<Plane[]> {
